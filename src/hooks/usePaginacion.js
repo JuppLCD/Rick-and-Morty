@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const usePaginacion = (characters) => {
 	// Paginacion
 	const [page, setPage] = useState(1);
-	const [characterPerPage] = useState(5);
+	const [characterPerPage] = useState(6);
 	// Personajes que se muestran al usuario (con o sin filtros)
 	const [charactersToShow, setCharactersToShow] = useState([]);
 

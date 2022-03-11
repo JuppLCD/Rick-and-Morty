@@ -7,15 +7,15 @@ export const FilterCharacters = ({ characters, aplicarFiltroPersonaje }) => {
 		}
 	}
 	return (
-		<section className="d-flex justify-content-between pt-3">
+		<section className="d-flex justify-content-between py-3">
 			<h2>Filtro Personajes: </h2>
 			<ButtonGroup aria-label="Filtros de los personajes">
-				<Button variant="success" onClick={() => aplicarFiltroPersonaje(characters)}>
+				<Button variant="primary" onClick={() => aplicarFiltroPersonaje(characters)}>
 					Mostrar Todos
 				</Button>
 				{arrEspecies.map((especie) => (
 					<Button
-						variant="secondary"
+						variant="dark"
 						key={especie}
 						onClick={() => aplicarFiltroPersonaje(characters.filter((character) => character.species === especie))}
 					>

@@ -19,6 +19,10 @@ export const HomePage = () => {
 	}
 	return (
 		<div className="container-lg ">
+			<h2 className="text-center">
+				Algunos de los personajes de <span>Rick and Morty</span>
+			</h2>
+			<p className="text-muted text-center">Pagination y filtros</p>
 			{charactersData.results && (
 				<FilterCharacters
 					characters={charactersData.results}
