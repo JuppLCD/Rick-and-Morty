@@ -32,6 +32,8 @@ export const SearchCharacter = () => {
 				}
 			});
 			setHasMore(!!charactersData.info.next && !error);
+		} else {
+			setCharacters([]);
 		}
 	}, [charactersData]);
 

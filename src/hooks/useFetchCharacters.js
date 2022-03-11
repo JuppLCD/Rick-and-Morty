@@ -8,6 +8,7 @@ export const useFetchData = (url = "", err_msg = "An error has ocurred getting t
 	useEffect(() => {
 		(async () => {
 			setLoading(true);
+			setError("");
 			try {
 				const response = await window.fetch(url);
 				if (!response.ok) {
