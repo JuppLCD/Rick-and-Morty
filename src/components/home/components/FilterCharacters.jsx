@@ -1,4 +1,4 @@
-import { Button, ButtonGroup } from "react-bootstrap";
+import { Button, ButtonGroup } from 'react-bootstrap';
 export const FilterCharacters = ({ characters, aplicarFiltroPersonaje }) => {
 	const arrEspecies = [];
 	for (let i = 0; i < characters.length; i++) {
@@ -7,22 +7,24 @@ export const FilterCharacters = ({ characters, aplicarFiltroPersonaje }) => {
 		}
 	}
 	return (
-		<section className="d-flex justify-content-between py-3">
+		<section className='d-md-flex justify-content-between py-3'>
 			<h2>Filtro Personajes: </h2>
-			<ButtonGroup aria-label="Filtros de los personajes">
-				<Button variant="primary" onClick={() => aplicarFiltroPersonaje(characters)}>
-					Mostrar Todos
-				</Button>
-				{arrEspecies.map((especie) => (
-					<Button
-						variant="dark"
-						key={especie}
-						onClick={() => aplicarFiltroPersonaje(characters.filter((character) => character.species === especie))}
-					>
-						{especie}
+			<div>
+				<ButtonGroup aria-label='Filtros de los personajes'>
+					<Button variant='primary' onClick={() => aplicarFiltroPersonaje(characters)}>
+						Mostrar Todos
 					</Button>
-				))}
-			</ButtonGroup>
+					{arrEspecies.map((especie) => (
+						<Button
+							variant='dark'
+							key={especie}
+							onClick={() => aplicarFiltroPersonaje(characters.filter((character) => character.species === especie))}
+						>
+							{especie}
+						</Button>
+					))}
+				</ButtonGroup>
+			</div>
 		</section>
 	);
 };
