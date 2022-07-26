@@ -1,7 +1,5 @@
-# practicando-paginacion
+# Practicando comunicacion con API desde React JS
 
-Paractica de paginacion y scroll infinito utilizando la api de Rick and Morty
+Se utilizo la api de Rick and Morty para crear este proyecto, con la finalidad de aprender a comunicarme con apis, realizar scroll infinito y realizar busquedas con a la api y posteriormete realizar filtrado.
 
-Probando React con Vite
-
-URL Deploy: https://rick-and-morty-jupplcd.netlify.app/
+Se utilizo React JS con Typescript, reemplaze Bootstrap y Sass con Tailwind CSS para probar este framework CSS
