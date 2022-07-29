@@ -7,16 +7,17 @@ import InputSelect from './InputSelect';
 import InputText from './InputText';
 
 function Filter() {
-	const [query, setQuery] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 
-	const status = query.get('status') ?? '';
-	const species = query.get('species') ?? '';
-	const type = query.get('type') ?? '';
-	const gender = query.get('gender') ?? '';
+	const status = searchParams.get('status') || '';
+	const species = searchParams.get('species') || '';
+	const type = searchParams.get('type') || '';
+	const gender = searchParams.get('gender') || '';
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>, query: Query) => {
-		console.log(e.target.value);
-		// setQuery({ [query]: e.target.value });
+	const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, query: Query) => {
+		searchParams.set(query, e.target.value);
+		setSearchParams(searchParams);
+		// setQuery({ [queryType]: e.target.value });
 	};
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -60,7 +61,7 @@ function Filter() {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-5'>
 			<InputSelect
 				{...dataFilters.inputSelectStatus}
 				handleChange={handleChange}

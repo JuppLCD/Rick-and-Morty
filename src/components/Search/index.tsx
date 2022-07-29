@@ -2,10 +2,13 @@ import { ChangeEvent, FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function Search() {
-	const [query, setQuery] = useSearchParams();
-	const search = query.get('search');
+	const [searchParams, setSearchParams] = useSearchParams();
+	const search = searchParams.get('search');
 
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => setQuery({ search: e.target.value });
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		searchParams.set('search', e.target.value);
+		setSearchParams(searchParams);
+	};
 
 	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

@@ -21,6 +21,7 @@ function InputText({ placeholder, label, name, value, handleChange, type }: Prop
 				id={idInput}
 				name={name}
 				value={value}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e, type)}
 				className=' border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
 				placeholder={placeholder}
 			/>

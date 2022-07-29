@@ -13,6 +13,8 @@ function CardCharacter(props: Props) {
 					<p>Location: {props.location.name}</p>
 					<p>Origin: {props.origin.name}</p>
 					<p>Gender: {props.gender}</p>
+					<p>Species: {props.species || 'null'}</p>
+					<p>Type: {props.type || 'null'}</p>
 				</div>
 			</div>
 		</div>

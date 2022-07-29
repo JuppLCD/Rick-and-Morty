@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, ChangeEventHandler } from 'react';
 import { Query } from '../../../types/inputs';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 		text: string;
 	}[];
 	value: string;
-	handleChange: (e: ChangeEvent<HTMLInputElement>, query: Query) => void;
+	handleChange: (e: ChangeEvent<HTMLSelectElement>, query: Query) => void;
 	type: Query;
 }
 function InputSelect({ nameOfTheDataToSelect, options, value, handleChange, type }: Props) {
@@ -18,16 +18,14 @@ function InputSelect({ nameOfTheDataToSelect, options, value, handleChange, type
 				Select an option
 			</label>
 			<select
+				onChange={(e: ChangeEvent<HTMLSelectElement>) => handleChange(e, type)}
+				value={value}
 				id={nameOfTheDataToSelect}
 				className=' border text-sm rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500'
 			>
 				<option value=''>Choose a {nameOfTheDataToSelect}</option>
 				{options.map((option) => (
-					<option
-						key={option.value}
-						// {option.value === value ? 'select': ''}
-						value={option.value}
-					>
+					<option key={option.value} value={option.value}>
 						{option.text}
 					</option>
 				))}

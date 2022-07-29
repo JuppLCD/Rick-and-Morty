@@ -14,24 +14,22 @@ export const useUrlApi: useUrlApi = (page, resetPage, resetCharacters) => {
 	const type = query.get('type');
 	const gender = query.get('gender');
 
-	const debouncedFilter = useDebounce({ search, status, species, type, gender }, 300);
+	const debouncedSearch = useDebounce(search, 300);
+	const debouncedStatus = useDebounce(status, 300);
+	const debouncedSpecies = useDebounce(species, 300);
+	const debouncedType = useDebounce(type, 300);
+	const debouncedGender = useDebounce(gender, 300);
 
 	useEffect(() => {
 		resetPage();
 		resetCharacters();
-	}, [
-		debouncedFilter.search,
-		debouncedFilter.status,
-		debouncedFilter.species,
-		debouncedFilter.type,
-		debouncedFilter.gender,
-	]);
+	}, [debouncedSearch, debouncedStatus, debouncedSpecies, debouncedType, debouncedGender]);
 
-	const queryName = `name=${debouncedFilter.search || ''}`;
-	const queryStatus = debouncedFilter.status ? `&status=${debouncedFilter.status}` : '';
-	const querySpecies = debouncedFilter.species ? `&species=${debouncedFilter.species}` : '';
-	const queryType = debouncedFilter.type ? `&type=${debouncedFilter.type}` : '';
-	const queryGender = debouncedFilter.gender ? `&gender=${debouncedFilter.gender}` : '';
+	const queryName = `name=${debouncedSearch || ''}`;
+	const queryStatus = debouncedStatus ? `&status=${debouncedStatus}` : '';
+	const querySpecies = debouncedSpecies ? `&species=${debouncedSpecies}` : '';
+	const queryType = debouncedType ? `&type=${debouncedType}` : '';
+	const queryGender = debouncedGender ? `&gender=${debouncedGender}` : '';
 
 	const url = `${urlAPI}/?${queryName + queryStatus + querySpecies + queryType + queryGender}&page=${page}`;
 
