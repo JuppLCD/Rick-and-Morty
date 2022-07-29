@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useDebounce } from '../hooks/useDebounce';
 import { useFetch } from '../hooks/useFetch';
-
-import { urlAPI } from '../config';
+import { useUrlApi } from '../hooks/useUrlApi';
 
 import { Character, DATA } from '../interface/FetchData';
 
@@ -12,6 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Container from '../components/Container';
 import GridCharacter from '../components/GridCharacter';
 import Search from '../components/Search';
+import Filter from '../components/Filter';
 import CardCharacter from '../components/CardCharacter';
 import Spinner from '../components/Spinner';
 
@@ -20,16 +18,10 @@ function FilterPage() {
 	const [hasMore, setHasMore] = useState(true);
 	const [charactersData, setCharactersData] = useState<Character[]>([]);
 
-	const [query] = useSearchParams();
-	const search = query.get('search');
-	const debouncedSearch = useDebounce(search, 300);
+	const resetPage = () => setPage(1);
+	const resetCharacters = () => setCharactersData([]);
 
-	useEffect(() => {
-		setPage(1);
-		setCharactersData([]);
-	}, [debouncedSearch]);
-
-	const url = `${urlAPI}/?name=${debouncedSearch || ''}&page=${page}`;
+	const url = useUrlApi(page, resetPage, resetCharacters);
 
 	const { loading, error, value } = useFetch<DATA>(url, {}, [url]);
 
@@ -52,6 +44,7 @@ function FilterPage() {
 				Search character of <span>Rick and Morty</span>
 			</h1>
 			<Search />
+			<Filter />
 			{!loading && error ? (
 				<p className='text-center mt-2'>No found</p>
 			) : (
